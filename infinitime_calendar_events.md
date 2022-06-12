@@ -1,6 +1,6 @@
 # InfiniTime Calendar integration
 
-![Timeline app in InfiniTime](/resources/infinitime/timeline_app.gif)
+<img src="/resources/infinitime/timeline_app.gif" width="313"/>
 
 ## Introduction
 
