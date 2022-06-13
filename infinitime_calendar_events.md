@@ -62,11 +62,22 @@ It was mostly for getting to know the code base and lvgl the graphics library.
 
 ## BLE
 
-TODO
+This project was really great to learn a lot about BLE (bluetooth low energy)
+
+It uses the [nimBLE](https://mynewt.apache.org/latest/tutorials/ble/bleprph/bleprph.html) library from the apache mynewt project.
+
+This project basically adds one service containing 4 characteristics.
 
 ## Storing the events: the FlatLinkedList container
 
-TODO
+In order to store the event, I made a flat linked list in an array with its
+capacity known at compile time.
+It was a good choice to insert and remove events from anywhere, while still doing no dynamic allocations.
+The container follow the standard library named requirements and has iterator and range support. It has a similar interface to `std::list`
+
+It is also extensively tested with the catch2 v3 library.
+
+This is all detailed in the [documentation of the project](https://github.com/FederAndInk/InfiniTime/blob/feature/CalendarTimeline/doc/CalendarEventService.md)
 
 ## UI for a small screen on a watch
 
@@ -101,7 +112,12 @@ The final UI, as shown in the beginning:
 - [ ] Use the calendar color as a background for the event
 
 ## Fixes that came out with the project
-TODO: GadgetBridge companion app client + calendar blacklist fix(PR)
+
+This project has allowed me to make some fixes to InfiniTime and gadget bridge
+
+- [An assertion failure in Infinitime](https://github.com/InfiniTimeOrg/InfiniTime/pull/1158)
+
+- [Calendar blacklist UI and backend issue in GadgetBridge](https://codeberg.org/Freeyourgadget/Gadgetbridge/pulls/2686)
 
 ## Struggling areas
 
