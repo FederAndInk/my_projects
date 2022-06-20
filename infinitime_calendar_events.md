@@ -106,10 +106,10 @@ The final UI, as shown in the beginning:
 
 - [ ] Show event details on click
 - [x] Show today/tomorrow
-- [ ] Show weekday
-- [ ] Use month name
+- [x] Show weekday
+- [x] Use month name
 - [ ] Use relative time for event starting in less than ~24h (e.g. "in 23min")
-- [ ] Use the calendar color as a background for the event
+- [x] Use the calendar color as a background for the event
 
 ## Fixes that came out with the project
 
