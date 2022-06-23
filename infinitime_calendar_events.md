@@ -139,4 +139,6 @@ When writing new characteristics for the notify event, it would do nothing on th
 
 It was a problem with the companion app somehow caching the discovered services and characteristics, it was solved by removing the device and readding it on the companion app.
 
+### Flashing DFU on a sealed PineTime
 
+After the development on the wired devkit using OpenOcd to do the flashing came the time to update a sealed unit with OTA and DFU. The project was build using the nrf5-sdk version 17.1.0 (latest at the moment). Unfortunately right after the transfert the bootloader wouldn't launch the firmware and just instantly rollback to the previous one. The problem was with the nrf5-sdk, version [15.3.0_59ac345](https://developer.nordicsemi.com/nRF5_SDK/nRF5_SDK_v15.x.x/nRF5_SDK_15.3.0_59ac345.zip) must be used in order for the firmware to launch successfully.
