@@ -1,6 +1,25 @@
 # InfiniTime Calendar integration
 
-<img src="/resources/infinitime/timeline_app.gif" width="313"/>
+<img src="/resources/infinitime/timeline_app_infinisim_final.gif" width="250"/>
+
+## Table of Contents
+
+- [InfiniTime Calendar integration](#infinitime-calendar-integration)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Hardware setup](#hardware-setup)
+  - [Development environment setup](#development-environment-setup)
+  - [Pet project to start](#pet-project-to-start)
+  - [BLE](#ble)
+  - [GadgetBridge integration](#gadgetbridge-integration)
+  - [Storing the events: the FlatLinkedList container](#storing-the-events-the-flatlinkedlist-container)
+  - [UI for a small screen on a watch](#ui-for-a-small-screen-on-a-watch)
+    - [The improvements](#the-improvements)
+  - [Fixes that came out with the project](#fixes-that-came-out-with-the-project)
+  - [Struggling areas](#struggling-areas)
+    - [Sending apparently too much and receiving `BLE_ATT_ERR_INSUFFICIENT_RES = 0x11` error on characteristic write](#sending-apparently-too-much-and-receiving-ble_att_err_insufficient_res--0x11-error-on-characteristic-write)
+    - [New characteristic wouldn't show up](#new-characteristic-wouldnt-show-up)
+    - [Flashing DFU on a sealed PineTime](#flashing-dfu-on-a-sealed-pinetime)
 
 ## Introduction
 
@@ -12,6 +31,7 @@ The repositories for this project:
 
 - GadgetBridge companion app for android: https://codeberg.org/FederAndInk/Gadgetbridge/src/branch/feature/PineTimeCalendarEvents
 - InfiniTime Calendar Timeline app: https://github.com/FederAndInk/InfiniTime/tree/feature/CalendarTimeline
+- InfiniSim configured with the Calendar Timeline app: https://github.com/FederAndInk/InfiniSim/tree/feature/CalendarTimeline
 
 For the documentation of the service and app: https://github.com/FederAndInk/InfiniTime/blob/feature/CalendarTimeline/doc/CalendarEventService.md
 
@@ -66,7 +86,11 @@ This project was really great to learn a lot about BLE (bluetooth low energy)
 
 It uses the [nimBLE](https://mynewt.apache.org/latest/tutorials/ble/bleprph/bleprph.html) library from the apache mynewt project.
 
-This project basically adds one service containing 4 characteristics.
+This project basically adds one service containing 4 characteristics. 2 are for writing addition and deletion of events. 2 more are for notifying the central, the first notify when there are rejected events because there is no more room to store them and the second notify when there is room for the rejected events to be sent back.
+
+## GadgetBridge integration
+
+GadgetBridge had already the structure to handle calendar events, I had only to add the service/characteristics and write the code to communicate those events to the pinetime.
 
 ## Storing the events: the FlatLinkedList container
 
@@ -98,18 +122,24 @@ Here is a first draft of the UI next to a more advanced one:
 
 Arrows were added alongside the date and time/duration handling. the today/tomorrow were still in progress though, the second image shows space test for the tomorrow labeling.
 
-The final UI, as shown in the beginning:
+The UI - minimum viable product - before the improvements:
 
 <img src="/resources/infinitime/timeline_app.gif" width="313"/>
 
-## Room for improvements
+### The improvements
 
-- [ ] Show event details on click
+The Final UI with all the improvements (in InfiniSim):
+
+<img src="/resources/infinitime/timeline_app_infinisim_final.gif" width="313"/>
+
+After getting a minimum viable product I got some ideas for improvements:
+
+- [x] Show event details on click
 - [x] Show today/tomorrow
 - [x] Show weekday
 - [x] Use month name
-- [ ] Use relative time for event starting in less than ~24h (e.g. "in 23min")
-- [ ] Show "Ends in" for ongoing events
+- [x] Use relative time for event starting in less than ~6h (e.g. "in 23min")
+- [x] Show "Ends in" for ongoing events
 - [x] Use the calendar color as a background for the event
 - [x] Highlight with a border events starting today or in the next 6 hours
 
