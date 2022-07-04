@@ -90,7 +90,9 @@ This project basically adds one service containing 4 characteristics. 2 are for 
 
 ## GadgetBridge integration
 
-GadgetBridge had already the structure to handle calendar events, I had only to add the service/characteristics and write the code to communicate those events to the pinetime.
+[GadgetBridge](https://www.gadgetbridge.org/) is an open source android application to connect to IoT devices, it already supports the PineTime.
+
+GadgetBridge had already the structure to handle calendar events, I had only to add the service/characteristics and write the code to communicate those events to the PineTime. For convenience the events are all resent when the PineTime is reconnected because the events could have been removed with a watch restart. Later on I also added the color of the calendar in the event and fixed an issue in GadgetBridge (see [fixes part](#fixes-that-came-out-with-the-project)).
 
 ## Storing the events: the FlatLinkedList container
 
